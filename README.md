@@ -6,7 +6,7 @@
 
 ## 定位與設計準則
 
-agent 的定位、設計準則與 authoring 流程，以 [`claude-skills`](https://github.com/seon-kuraito/claude-skills) 中 [`ultra-agent-author`](https://github.com/seon-kuraito/claude-skills/tree/main/skills/ultra-agent-author) 的 `SKILL.md` 為唯一權威。
+agent 的定位、設計準則與 authoring 流程，以 [`claude-skills`](https://github.com/seon-kuraito/claude-skills) 中 [`sk-agent-author`](https://github.com/seon-kuraito/claude-skills/tree/main/skills/sk-agent-author) 的 `SKILL.md` 為唯一權威。
 
 　
 
@@ -50,7 +50,7 @@ scripts/run-checks.sh               # 全部 agent
 scripts/run-checks.sh <agent-name>  # 單一 agent
 ```
 
-這支腳本執行結構層與腳本層檢查，兩者都不消耗模型 token。agent 需要由模型路由，因此本 repo 除了四條共通規則，也實作 `description` 與 `model-cases` 兩條路由專屬規則，另以 `contract` 檢查 `tools` 與 `model` 是否宣告。模型層的觸發與行為案例由 [`ultra-agent-author`](https://github.com/seon-kuraito/claude-skills/tree/main/skills/ultra-agent-author) 在流程末端執行。共通規則來自 [claude-skills](https://github.com/seon-kuraito/claude-skills) 的 `ultra-skill-author/references/verification.md`；並列 repo 不存在時會跳過規則比對。
+這支腳本執行結構層與腳本層檢查，兩者都不消耗模型 token。agent 需要由模型路由，因此本 repo 除了四條共通規則，也實作 `description` 與 `model-cases` 兩條路由專屬規則，另以 `contract` 檢查 `tools` 與 `model` 是否宣告。模型層的觸發與行為案例由 [`sk-agent-author`](https://github.com/seon-kuraito/claude-skills/tree/main/skills/sk-agent-author) 在流程末端執行。共通規則來自 [claude-skills](https://github.com/seon-kuraito/claude-skills) 的 `sk-skill-author/references/verification.md`；並列 repo 不存在時會跳過規則比對。
 
 `agents/` 為空時仍會執行規則比對，讓規格更新與 runner 實作不一致的情況能在提交前被發現。
 
