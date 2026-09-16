@@ -41,12 +41,27 @@ scripts/link-agent.sh <agent-name>
 
 　
 
+## 驗證
+
+提交前檢查 repo 裡的 agent：
+
+```sh
+scripts/run-checks.sh               # 全部 agent
+scripts/run-checks.sh <agent-name>  # 單一 agent
+```
+
+這支腳本執行結構層與腳本層檢查，兩者都不消耗模型 token。agent 需要由模型路由，因此本 repo 除了四條共通規則，也實作 `description` 與 `model-cases` 兩條路由專屬規則，另以 `contract` 檢查 `tools` 與 `model` 是否宣告。模型層的觸發與行為案例由 [`ultra-agent-author`](https://github.com/seon-kuraito/claude-skills/tree/main/skills/ultra-agent-author) 在流程末端執行。共通規則來自 [claude-skills](https://github.com/seon-kuraito/claude-skills) 的 `ultra-skill-author/references/verification.md`；並列 repo 不存在時會跳過規則比對。
+
+　
+
 ## 新增 agent
 
 1. 在 `agents/<agent-name>/` 下撰寫 definition（`<agent-name>.md`）
 2. 執行 `scripts/link-agent.sh <agent-name>` 讓它出現在 `~/.claude/agents/`
-3. 為 agent 撰寫一份自己的 `README.md`，說明用途、來源與授權
-4. commit 前確認出處：
+3. 為 agent 撰寫 `tests/model.json`：至少一個 `default: true` 的觸發案例，確認請求會路由到它
+4. 為 agent 撰寫一份自己的 `README.md`，說明用途、來源與授權
+5. 將它加入上方的「Agents 一覽」表，並依名稱字母序插入
+6. commit 前確認出處：
    - **原創作品**：採用 MIT 授權
    - **衍生自寬鬆授權的上游**：保留上游授權，並以 `NOTICE` 標明來源、作者與修改內容
    - **來源不明或授權不相容**：不收入本 repo
