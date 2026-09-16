@@ -25,11 +25,6 @@ fi
 
 fail=0
 
-if [ ${#items[@]} -eq 0 ]; then
-  echo "---"
-  echo "no items to check"
-  exit 0
-fi
 
 # Drift check — the shared rules and the routed-item rules both apply here.
 spec="$repo/../claude-skills/skills/ultra-skill-author/references/verification.md"
@@ -44,6 +39,14 @@ if [ -f "$spec" ]; then
   done
 else
   echo "SKIP  drift check — no verification.md beside this repo"
+fi
+
+# An empty repo is a valid state — the drift check above still applies to its
+# runner, and bash 3.2 errors on "${items[@]}" under set -u.
+if [ ${#items[@]} -eq 0 ]; then
+  echo "---"
+  if [ $fail -eq 0 ]; then echo "no items to check"; else echo "checks failed"; fi
+  exit $fail
 fi
 
 # Structure tier.
