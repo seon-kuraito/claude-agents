@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# naming — ultra-<single-token>-<verber>, matched by the folder, the definition
+# naming — sk-<single-token>-<verber>, matched by the folder, the definition
 # file inside it, and the frontmatter name. `author` is reserved for the skills
 # that author Claude Code extensions.
 set -uo pipefail
@@ -7,8 +7,8 @@ repo="$1"; shift
 . "$(dirname "${BASH_SOURCE[0]}")/_lib.sh"
 fail=0
 for name in "$@"; do
-  printf '%s' "$name" | grep -Eq '^ultra-[a-z0-9]+-[a-z]+$' ||
-    { echo "FAIL  $name — directory name is not ultra-<single-token>-<verber>"; fail=1; }
+  printf '%s' "$name" | grep -Eq '^sk-[a-z0-9]+-[a-z]+$' ||
+    { echo "FAIL  $name — directory name is not sk-<single-token>-<verber>"; fail=1; }
   case "$name" in
     *-author) echo "FAIL  $name — \`author\` is reserved for extension-authoring skills"; fail=1 ;;
   esac
