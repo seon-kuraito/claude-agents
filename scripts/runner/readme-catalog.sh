@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# readme-catalog — the repo README lists every hook, sorted alphabetically.
+# readme-catalog — the repo README lists every agent, sorted alphabetically.
 set -uo pipefail
 repo="$1"; shift
 fail=0

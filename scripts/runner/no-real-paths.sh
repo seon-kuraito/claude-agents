@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# no-real-paths — a published hook carries placeholders, never a real machine
+# no-real-paths — a published agent carries placeholders, never a real machine
 # path or account name.
 set -uo pipefail
 repo="$1"; shift
